@@ -22,10 +22,10 @@ public abstract class AbstractColumnFactory {
 
 	public abstract AbstractDataColumn finishColumn();
 
-	public AbstractColumnFactory(String name, String role, int bufferStep, boolean nullAllowed) {
+	public AbstractColumnFactory(String name, String role, int bufferStep, boolean nullAllowed, boolean createNullArray) {
 		this.bufferStep = bufferStep;
 		this.nullAllowed = nullAllowed;
-		if (nullAllowed) {
+		if (createNullArray) {
 			nullElements = new boolean[bufferStep];
 		} else {
 			nullElements = null;

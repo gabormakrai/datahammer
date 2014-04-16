@@ -8,7 +8,7 @@ public class FloatDataColumnFactory extends AbstractColumnFactory {
 	float[] data;
 
 	public FloatDataColumnFactory(String name, String role, int bufferStep, boolean nullAllowed) {
-		super(name, role, bufferStep, nullAllowed);
+		super(name, role, bufferStep, nullAllowed, nullAllowed);
 		data = new float[bufferStep];
 	}
 

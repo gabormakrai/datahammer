@@ -1,7 +1,6 @@
 package dh.data.column.factory;
 
 import dh.data.column.AbstractDataColumn;
-import dh.data.column.base.IntegerDataColumn;
 import dh.data.column.base.StringDataColumn;
 
 public class StringDataColumnFactory extends AbstractColumnFactory {
@@ -9,7 +8,7 @@ public class StringDataColumnFactory extends AbstractColumnFactory {
 	String[] data;
 
 	public StringDataColumnFactory(String name, String role, int bufferStep, boolean nullAllowed) {
-		super(name, role, bufferStep, false);
+		super(name, role, bufferStep, nullAllowed, false);
 		data = new String[bufferStep];
 	}
 

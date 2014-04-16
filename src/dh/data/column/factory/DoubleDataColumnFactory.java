@@ -8,7 +8,7 @@ public class DoubleDataColumnFactory extends AbstractColumnFactory {
 	double[] data;
 
 	public DoubleDataColumnFactory(String name, String role, int bufferStep, boolean nullAllowed) {
-		super(name, role, bufferStep, nullAllowed);
+		super(name, role, bufferStep, nullAllowed, nullAllowed);
 		data = new double[bufferStep];
 	}
 

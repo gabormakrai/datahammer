@@ -8,7 +8,7 @@ public class LongDataColumnFactory extends AbstractColumnFactory {
 	long[] data;
 
 	public LongDataColumnFactory(String name, String role, int bufferStep, boolean nullAllowed) {
-		super(name, role, bufferStep, nullAllowed);
+		super(name, role, bufferStep, nullAllowed, nullAllowed);
 		data = new long[bufferStep];
 	}
 
