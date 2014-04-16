@@ -14,6 +14,9 @@ public class ColumnFactoryFactory {
                                                 return new NominalDataColumnFactory(name, role, bufferStep, nullAllowed);
                                 } else if (type.equals("float")) {
                                                 return new FloatDataColumnFactory(name, role, bufferStep, nullAllowed);
+                                } else if (type.equals("boolean")) {
+                                    return new BooleanDataColumnFactory(name, role, bufferStep, nullAllowed);
+                                
 //                            } else if (type.equals("string")) {
 //                                            return new StringDataColumnFactory(bufferStep);
                                 }

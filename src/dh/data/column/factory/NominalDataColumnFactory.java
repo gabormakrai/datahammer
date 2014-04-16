@@ -12,7 +12,7 @@ public class NominalDataColumnFactory extends AbstractColumnFactory {
 	HashMap<Integer, String> reverseMapping;
 
 	public NominalDataColumnFactory(String name, String role, int bufferStep, boolean nullAllowed) {
-		super(name, role, bufferStep, nullAllowed);
+		super(name, role, bufferStep, false);
 
 		data = new int[bufferStep];
 		mapping = new HashMap<>();
