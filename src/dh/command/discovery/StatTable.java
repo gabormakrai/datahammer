@@ -21,14 +21,13 @@ public class StatTable extends AbstractCommand {
 
 		Table table = getTable(tableName);
 
-		logger.info("Table " + table.getName() + " contains "
-				+ table.getColumns().size() + " column(s)...");
+		logger.info("Table " + table.getName() + " contains " + table.getColumns().size() + " column(s)...");
 		logger.info("Table size: " + table.getSize());
 
 		StringBuffer buffer = new StringBuffer();
 
 		for (AbstractDataColumn column : table.getColumns().values()) {
-			
+
 			buffer.setLength(0);
 			buffer.append(column.getName());
 			buffer.append(", type:");
@@ -37,23 +36,23 @@ public class StatTable extends AbstractCommand {
 			buffer.append("" + column.getSize());
 			buffer.append(", nulls:");
 			buffer.append("" + column.calculateNullStat());
-			
+
 			if (column instanceof BooleanDataColumn) {
 				BooleanDataColumn c = (BooleanDataColumn) column;
 				int numberOfTrues = 0;
 				boolean[] data = c.getData();
-				for (int i=0; i < data.length; ++i) {
+				for (int i = 0; i < data.length; ++i) {
 					if (data[i]) {
 						++numberOfTrues;
 					}
 				}
-				
+
 				buffer.append(", trues: ");
 				buffer.append(numberOfTrues);
 				buffer.append(", falses: ");
 				buffer.append(c.getSize() - numberOfTrues);
 			}
-			
+
 			logger.info(buffer.toString());
 		}
 	}

@@ -24,7 +24,8 @@ public class LoadCSV extends AbstractCommand {
 		super(repository);
 	}
 
-	public void run(String fileName, String tableName, String[] columns, String[] types, boolean[] nullAllowed, boolean skipFirstLine, char escapeChar, char quoteChar, char separatorChar, Integer bufferStepParameter) {
+	public void run(String fileName, String tableName, String[] columns, String[] types, boolean[] nullAllowed, boolean skipFirstLine, char escapeChar, char quoteChar, char separatorChar,
+			Integer bufferStepParameter) {
 
 		if (repository.getTable(tableName) != null) {
 			throw new RuntimeException("Repository has a table with name " + tableName + "...");
@@ -122,7 +123,7 @@ public class LoadCSV extends AbstractCommand {
 						if (nullColumn) {
 							factories[columnNumber++].addElement(null);
 						} else {
-						    factories[columnNumber++].addElement(columnContent.toString());
+							factories[columnNumber++].addElement(columnContent.toString());
 						}
 						nullColumn = false;
 						quotedColumn = false;

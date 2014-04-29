@@ -35,13 +35,9 @@ public class Precision extends AbstractClassificationEvaluator {
 	}
 
 	@Override
-	protected EvaluationResult evaluate(AbstractDataColumn targetColumn,
-			AbstractDataColumn predictionColumn,
-			AbstractDataColumn markingColumn, MarkingType markingType,
-			AbstractDataColumn numericPredicition,
-			AbstractDataColumn weightColumn,
-			AbstractDataColumn nominalPrediction) {
-		
+	protected EvaluationResult evaluate(AbstractDataColumn targetColumn, AbstractDataColumn predictionColumn, AbstractDataColumn markingColumn, MarkingType markingType,
+			AbstractDataColumn numericPredicition, AbstractDataColumn weightColumn, AbstractDataColumn nominalPrediction) {
+
 		int tp = 0;
 		int fp = 0;
 

@@ -22,10 +22,10 @@ public class FMeasure extends AbstractClassificationEvaluator {
 
 		@Override
 		public String toString() {
-			
+
 			double precision = (double) tp / (double) (tp + fp);
 			double recall = (double) tp / (double) (tp + fn);
-			
+
 			return "Classification F-Measure: " + 2.0 * (precision * recall) / (precision + recall);
 		}
 
@@ -41,13 +41,9 @@ public class FMeasure extends AbstractClassificationEvaluator {
 	}
 
 	@Override
-	protected EvaluationResult evaluate(AbstractDataColumn targetColumn,
-			AbstractDataColumn predictionColumn,
-			AbstractDataColumn markingColumn, MarkingType markingType,
-			AbstractDataColumn numericPredicition,
-			AbstractDataColumn weightColumn,
-			AbstractDataColumn nominalPrediction) {
-		
+	protected EvaluationResult evaluate(AbstractDataColumn targetColumn, AbstractDataColumn predictionColumn, AbstractDataColumn markingColumn, MarkingType markingType,
+			AbstractDataColumn numericPredicition, AbstractDataColumn weightColumn, AbstractDataColumn nominalPrediction) {
+
 		int tp = 0;
 		int fp = 0;
 		int fn = 0;
