@@ -75,6 +75,8 @@ public abstract class AbstractDataColumn implements Serializable {
 	public abstract void filter(boolean[] filterArray);
 
 	public abstract void reorder(int[] order);
+	
+	public abstract void merge(AbstractDataColumn column);
 
 	public int calculateNullStat() {
 		int nullValues = 0;

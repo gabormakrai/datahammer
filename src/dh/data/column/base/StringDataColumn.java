@@ -109,4 +109,25 @@ public class StringDataColumn extends AbstractDataColumn {
 	public int compare(int i1, int i2) {
 		return data[i1].compareTo(data[i2]);
 	}
+
+	@Override
+	public void merge(AbstractDataColumn column) {
+		if (!(column instanceof LongDataColumn)) {
+			throw new RuntimeException("Column " + column + " is not compatible with this column " + this);
+		}
+		
+		StringDataColumn otherColumn = (StringDataColumn)column;
+				
+		String[] newData = new String[data.length + otherColumn.data.length];
+				
+		for (int i = 0; i < data.length; ++i) {
+			newData[i] = data[i];
+		}
+		for (int i = 0; i < otherColumn.data.length; ++i) {
+			newData[data.length + i] = otherColumn.data[i];
+		}
+		
+		data = null;
+		data = newData;
+	}
 }

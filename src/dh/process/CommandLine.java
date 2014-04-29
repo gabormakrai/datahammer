@@ -81,6 +81,7 @@ public class CommandLine {
 		// addColumn = new AddColumn(repository);
 		copyTable = new CopyTable(repository);
 		// filterRows = new FilterRows(repository);
+		mergeTable = new MergeTables(repository);
 		// modifyColumn = new ModifyColumn(repository);
 		removeColumn = new RemoveColumn(repository);
 		removeTable = new RemoveTable(repository);
@@ -121,6 +122,7 @@ public class CommandLine {
 	// final protected AddColumn addColumn;
 	final protected CopyTable copyTable;
 	// final protected FilterRows filterRows;
+	final protected MergeTables mergeTable;
 	// final protected ModifyColumn modifyColumn;
 	final protected RemoveColumn removeColumn;
 	final protected RemoveTable removeTable;

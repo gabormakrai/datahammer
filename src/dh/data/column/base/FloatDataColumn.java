@@ -122,4 +122,46 @@ public class FloatDataColumn extends AbstractDataColumn {
 			return 0;
 		}
 	}
+
+	@Override
+	public void merge(AbstractDataColumn column) {
+		if (!(column instanceof FloatDataColumn)) {
+			throw new RuntimeException("Column " + column + " is not compatible with this column " + this);
+		}
+		
+		FloatDataColumn otherColumn = (FloatDataColumn)column;
+		
+		if (nullElements == null && otherColumn.nullElements != null || nullElements != null && otherColumn.nullElements == null) {
+			throw new RuntimeException("You can only merge the same column (with same null feature)");
+		}
+		
+		float[] newData = new float[data.length + otherColumn.data.length];
+		boolean[] newNull = null;
+		
+		if (nullElements != null) {
+			newNull = new boolean[nullElements.length + otherColumn.nullElements.length];
+		}
+		
+		for (int i = 0; i < data.length; ++i) {
+			newData[i] = data[i];
+		}
+		for (int i = 0; i < otherColumn.data.length; ++i) {
+			newData[data.length + i] = otherColumn.data[i];
+		}
+		
+		data = null;
+		data = newData;
+		
+		if (newNull != null) {
+			for (int i = 0; i < data.length; ++i) {
+				newData[i] = data[i];
+			}
+			for (int i = 0; i < otherColumn.data.length; ++i) {
+				newData[data.length + i] = otherColumn.data[i];
+			}
+			
+			nullElements = null;
+			nullElements = newNull;
+		}
+	}
 }

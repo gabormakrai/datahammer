@@ -141,4 +141,9 @@ public class NominalDataColumn extends AbstractDataColumn {
 	public int compare(int i1, int i2) {
 		return reverseMapping.get(data[i1]).compareTo(reverseMapping.get(data[i2]));
 	}
+
+	@Override
+	public void merge(AbstractDataColumn column) {
+		// TODO: do Nominal merging...
+	}
 }
