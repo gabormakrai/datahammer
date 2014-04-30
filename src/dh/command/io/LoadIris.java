@@ -69,31 +69,26 @@ public class LoadIris extends AbstractCommand {
 		DoubleDataColumn dataColumnA1 = new DoubleDataColumn();
 		dataColumnA1.setName("a1");
 		dataColumnA1.setRole("");
-		dataColumnA1.setSize(150);
 		dataColumnA1.setData(a1);
 
 		DoubleDataColumn dataColumnA2 = new DoubleDataColumn();
 		dataColumnA2.setName("a2");
 		dataColumnA2.setRole("");
-		dataColumnA2.setSize(150);
 		dataColumnA2.setData(a2);
 
 		DoubleDataColumn dataColumnA3 = new DoubleDataColumn();
 		dataColumnA3.setName("a3");
 		dataColumnA3.setRole("");
-		dataColumnA3.setSize(150);
 		dataColumnA3.setData(a3);
 
 		DoubleDataColumn dataColumnA4 = new DoubleDataColumn();
 		dataColumnA4.setName("a4");
 		dataColumnA4.setRole("");
-		dataColumnA4.setSize(150);
 		dataColumnA4.setData(a4);
 
 		StringDataColumn dataColumnLabel = new StringDataColumn();
 		dataColumnLabel.setName("label");
 		dataColumnLabel.setRole("");
-		dataColumnLabel.setSize(150);
 		dataColumnLabel.setData(label);
 
 		table.getColumns().put(dataColumnA1.getName(), dataColumnA1);

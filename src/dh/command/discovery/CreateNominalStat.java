@@ -54,13 +54,11 @@ public class CreateNominalStat extends AbstractCommand {
 		StringDataColumn labelsColumn = new StringDataColumn();
 		labelsColumn.setName("labels");
 		labelsColumn.setData(labels);
-		labelsColumn.setSize(labels.length);
 
 		IntegerDataColumn frequencyColumn = new IntegerDataColumn();
 		frequencyColumn.setName("frequency");
 		frequencyColumn.setData(frequency);
 		frequencyColumn.setNullElements(frequencyNullElements);
-		frequencyColumn.setSize(labels.length);
 
 		result.getColumns().put(labelsColumn.getName(), labelsColumn);
 		result.getColumns().put(frequencyColumn.getName(), frequencyColumn);

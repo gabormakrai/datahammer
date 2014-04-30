@@ -22,7 +22,6 @@ public class LongDataColumn extends AbstractDataColumn {
 	public AbstractDataColumn copy(String newColumnName) {
 		LongDataColumn newColumn = new LongDataColumn();
 		newColumn.setName(newColumnName);
-		newColumn.setSize(size);
 		newColumn.setRole(role);
 		newColumn.setData(Arrays.copyOf(data, data.length));
 		if (nullElements != null) {
@@ -88,14 +87,12 @@ public class LongDataColumn extends AbstractDataColumn {
 			nullElements = null;
 			nullElements = newNullElements;
 		}
-
-		setSize(newSize);
 	}
 
 	@Override
 	public void reorder(int[] order) {
 
-		long[] newData = new long[size];
+		long[] newData = new long[data.length];
 		for (int i = 0; i < newData.length; i++) {
 			newData[i] = data[order[i]];
 		}
@@ -164,4 +161,10 @@ public class LongDataColumn extends AbstractDataColumn {
 			nullElements = newNull;
 		}
 	}
+	
+	@Override
+	public int getSize() {
+		return data.length;
+	}
+	
 }

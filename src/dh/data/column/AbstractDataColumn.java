@@ -10,8 +10,6 @@ public abstract class AbstractDataColumn implements Serializable {
 
 	protected String role;
 
-	protected int size;
-
 	protected boolean[] nullElements = null;
 
 	public abstract String getColumnType();
@@ -32,13 +30,7 @@ public abstract class AbstractDataColumn implements Serializable {
 		this.role = role;
 	}
 
-	public int getSize() {
-		return size;
-	}
-
-	public void setSize(int size) {
-		this.size = size;
-	}
+	public abstract int getSize();
 
 	public boolean[] getNullElements() {
 		return nullElements;

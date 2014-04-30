@@ -22,7 +22,6 @@ public class BooleanDataColumn extends AbstractDataColumn {
 	public AbstractDataColumn copy(String newColumnName) {
 		BooleanDataColumn newColumn = new BooleanDataColumn();
 		newColumn.setName(newColumnName);
-		newColumn.setSize(size);
 		newColumn.setRole(role);
 		newColumn.setData(Arrays.copyOf(data, data.length));
 		if (nullElements != null) {
@@ -88,14 +87,12 @@ public class BooleanDataColumn extends AbstractDataColumn {
 			nullElements = null;
 			nullElements = newNullElements;
 		}
-
-		setSize(newSize);
 	}
 
 	@Override
 	public void reorder(int[] order) {
 
-		boolean[] newData = new boolean[size];
+		boolean[] newData = new boolean[data.length];
 		for (int i = 0; i < newData.length; i++) {
 			newData[i] = data[order[i]];
 		}
@@ -157,5 +154,10 @@ public class BooleanDataColumn extends AbstractDataColumn {
 			nullElements = null;
 			nullElements = newNull;
 		}
+	}
+
+	@Override
+	public int getSize() {
+		return data.length;
 	}
 }

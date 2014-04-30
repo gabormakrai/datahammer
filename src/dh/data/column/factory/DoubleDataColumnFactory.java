@@ -85,7 +85,6 @@ public class DoubleDataColumnFactory extends AbstractColumnFactory {
 		DoubleDataColumn column = new DoubleDataColumn();
 		column.setName(name);
 		column.setRole(role);
-		column.setSize(size);
 		column.setData(columnData);
 		if (nullAllowed) {
 			column.setNullElements(columnNullElements);

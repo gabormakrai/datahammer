@@ -30,7 +30,6 @@ public abstract class ClassificationModel extends Model {
 
 		BooleanDataColumn prediction = new BooleanDataColumn();
 		prediction.setName("prediction");
-		prediction.setSize(table.getSize());
 		prediction.setRole("prediction");
 		boolean[] nullElements = new boolean[table.getSize()];
 		boolean[] p = new boolean[table.getSize()];
@@ -53,7 +52,6 @@ public abstract class ClassificationModel extends Model {
 
 		DoubleDataColumn numericPrediction = new DoubleDataColumn();
 		numericPrediction.setName("numericprediction");
-		numericPrediction.setSize(table.getSize());
 		numericPrediction.setRole("numericprediction");
 		double[] numericP = new double[table.getSize()];
 		boolean[] nullElements = new boolean[table.getSize()];
@@ -78,7 +76,6 @@ public abstract class ClassificationModel extends Model {
 
 		NominalDataColumn nominalPrediction = new NominalDataColumn();
 		nominalPrediction.setName("nominalprediction");
-		nominalPrediction.setSize(table.getSize());
 		nominalPrediction.setRole("nominalprediction");
 
 		HashMap<String, Integer> map = new HashMap<String, Integer>();

@@ -85,7 +85,6 @@ public class IntegerDataColumnFactory extends AbstractColumnFactory {
 		IntegerDataColumn column = new IntegerDataColumn();
 		column.setName(name);
 		column.setRole(role);
-		column.setSize(size);
 		column.setData(columnData);
 		if (nullAllowed) {
 			column.setNullElements(columnNullElements);

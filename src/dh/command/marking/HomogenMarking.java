@@ -37,7 +37,6 @@ public class HomogenMarking extends AbstractCommand {
 			MarkingColumn marking = new MarkingColumn();
 			marking.setName("marking");
 			marking.setRole("marking");
-			marking.setSize(table.getSize());
 			marking.setData(data);
 			table.getColumns().put("marking", marking);
 		}

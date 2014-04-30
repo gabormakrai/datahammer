@@ -91,7 +91,6 @@ public class ExplodeNominal extends AbstractCommand {
 	private DoubleDataColumn createNewColumn(String name, int length) {
 		DoubleDataColumn c = new DoubleDataColumn();
 		c.setName(name);
-		c.setSize(length);
 		c.setRole("");
 		double[] data = new double[length];
 		boolean[] nullElements = new boolean[length];

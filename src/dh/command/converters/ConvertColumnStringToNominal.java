@@ -51,7 +51,6 @@ public class ConvertColumnStringToNominal extends AbstractCommand {
 		NominalDataColumn newColumn = new NominalDataColumn();
 		newColumn.setName(outputColumnName);
 		newColumn.setRole("");
-		newColumn.setSize(data.length);
 		newColumn.setData(data);
 		newColumn.setMapping(map);
 		newColumn.setReverseMapping(mapInverse);

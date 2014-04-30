@@ -47,7 +47,6 @@ public class AddWeightColumn extends AbstractCommand {
 			DoubleDataColumn weightColumn = new DoubleDataColumn();
 			weightColumn.setName("weight");
 			weightColumn.setRole("weight");
-			weightColumn.setSize(table.getSize());
 			boolean[] nullData = new boolean[table.getSize()];
 			weightColumn.setNullElements(nullData);
 			weightColumn.setData(data);

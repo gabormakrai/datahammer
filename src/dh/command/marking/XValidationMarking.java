@@ -58,7 +58,6 @@ public class XValidationMarking extends AbstractCommand {
 			MarkingColumn markingColumn = new MarkingColumn();
 			markingColumn.setName("marking");
 			markingColumn.setRole("marking");
-			markingColumn.setSize(table.getSize());
 			marking = new MarkingType[table.getSize()];
 			markingColumn.setData(marking);
 			table.getColumns().put(markingColumn.getName(), markingColumn);
@@ -66,7 +65,6 @@ public class XValidationMarking extends AbstractCommand {
 			IntegerDataColumn groupsColumn = new IntegerDataColumn();
 			groupsColumn.setName("groups");
 			groupsColumn.setRole("groups");
-			groupsColumn.setSize(table.getSize());
 			groups = new int[table.getSize()];
 			boolean[] groupsNull = new boolean[table.getSize()];
 

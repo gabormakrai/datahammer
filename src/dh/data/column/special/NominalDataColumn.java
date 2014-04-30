@@ -58,7 +58,6 @@ public class NominalDataColumn extends AbstractDataColumn {
 	public AbstractDataColumn copy(String newColumnName) {
 		NominalDataColumn newColumn = new NominalDataColumn();
 		newColumn.setName(newColumnName);
-		newColumn.setSize(this.getSize());
 		newColumn.setRole(this.getRole());
 		newColumn.setData(Arrays.copyOf(this.data, this.data.length));
 		return newColumn;
@@ -116,8 +115,6 @@ public class NominalDataColumn extends AbstractDataColumn {
 		// TODO: mapping update ...
 
 		// TODO: inverseMapping update ...
-
-		setSize(newSize);
 	}
 
 	@Override
@@ -128,7 +125,7 @@ public class NominalDataColumn extends AbstractDataColumn {
 	@Override
 	public void reorder(int[] order) {
 
-		int[] newData = new int[size];
+		int[] newData = new int[data.length];
 		for (int i = 0; i < newData.length; i++) {
 			newData[i] = data[order[i]];
 		}
@@ -146,4 +143,10 @@ public class NominalDataColumn extends AbstractDataColumn {
 	public void merge(AbstractDataColumn column) {
 		// TODO: do Nominal merging...
 	}
+	
+	@Override
+	public int getSize() {
+		return data.length;
+	}
+	
 }

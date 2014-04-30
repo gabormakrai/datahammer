@@ -69,7 +69,6 @@ public class NominalDataColumnFactory extends AbstractColumnFactory {
 		NominalDataColumn column = new NominalDataColumn();
 		column.setName(name);
 		column.setRole(role);
-		column.setSize(size);
 		column.setData(columnData);
 		column.setMapping(mapping);
 		column.setReverseMapping(reverseMapping);

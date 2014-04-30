@@ -53,7 +53,6 @@ public class StringDataColumnFactory extends AbstractColumnFactory {
 		StringDataColumn column = new StringDataColumn();
 		column.setName(name);
 		column.setRole(role);
-		column.setSize(size);
 		column.setData(columnData);
 		return column;
 	}

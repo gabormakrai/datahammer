@@ -85,7 +85,6 @@ public class LongDataColumnFactory extends AbstractColumnFactory {
 		LongDataColumn column = new LongDataColumn();
 		column.setName(name);
 		column.setRole(role);
-		column.setSize(size);
 		column.setData(columnData);
 		if (nullAllowed) {
 			column.setNullElements(columnNullElements);

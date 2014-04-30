@@ -32,7 +32,6 @@ public class MarkingColumn extends AbstractDataColumn {
 	public AbstractDataColumn copy(String newColumnName) {
 		MarkingColumn newColumn = new MarkingColumn();
 		newColumn.setName(newColumnName);
-		newColumn.setSize(this.getSize());
 		newColumn.setRole(this.getRole());
 		newColumn.setData(Arrays.copyOf(this.data, this.data.length));
 		return newColumn;
@@ -82,14 +81,12 @@ public class MarkingColumn extends AbstractDataColumn {
 			nullElements = null;
 			nullElements = newNullElements;
 		}
-
-		setSize(newSize);
 	}
 
 	@Override
 	public void reorder(int[] order) {
 
-		MarkingType[] newData = new MarkingType[size];
+		MarkingType[] newData = new MarkingType[data.length];
 		for (int i = 0; i < newData.length; i++) {
 			newData[i] = data[order[i]];
 		}
@@ -152,5 +149,9 @@ public class MarkingColumn extends AbstractDataColumn {
 			nullElements = newNull;
 		}
 	}
-
+	
+	@Override
+	public int getSize() {
+		return data.length;
+	}
 }

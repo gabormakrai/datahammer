@@ -51,7 +51,6 @@ public class ConvertColumnStringToBoolean extends AbstractCommand {
 			BooleanDataColumn newColumn = new BooleanDataColumn();
 			newColumn.setName(outputColumnName);
 			newColumn.setRole("");
-			newColumn.setSize(data.length);
 			newColumn.setData(data);
 
 			table.getColumns().put(newColumn.getName(), newColumn);

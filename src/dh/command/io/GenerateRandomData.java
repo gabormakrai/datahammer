@@ -45,7 +45,6 @@ public class GenerateRandomData extends AbstractCommand {
 			IntegerDataColumn idColumn = new IntegerDataColumn();
 			idColumn.setName("id");
 			idColumn.setData(idData);
-			idColumn.setSize(size);
 			idColumn.setRole("id");
 			idColumn.setNullElements(idNullData);
 			table.getColumns().put(idColumn.getName(), idColumn);
@@ -63,7 +62,6 @@ public class GenerateRandomData extends AbstractCommand {
 			column.setNullElements(nullData);
 			column.setName("data" + i);
 			column.setRole("");
-			column.setSize(size);
 			table.getColumns().put(column.getName(), column);
 		}
 
