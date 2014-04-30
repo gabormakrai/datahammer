@@ -47,6 +47,9 @@ public class MergeTables extends AbstractCommand {
 			c.merge(inputTable.getColumn(c.getName()));
 		}
 		
+		// set the table size
+		baseTable.setSize(baseTable.getColumns().values().iterator().next().getSize());
+		
 		logger.info("Merging done");
 
 	}
