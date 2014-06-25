@@ -20,9 +20,7 @@ public class FloatDataColumnFactory extends AbstractColumnFactory {
 			for (int i = 0; i < data.length; i++) {
 				newData[i] = data[i];
 			}
-			data = null;
-			data = newData;
-
+			
 			if (nullAllowed) {
 				boolean[] newNullElements = new boolean[data.length + bufferStep];
 				for (int i = 0; i < data.length; i++) {
@@ -31,6 +29,9 @@ public class FloatDataColumnFactory extends AbstractColumnFactory {
 				nullElements = null;
 				nullElements = newNullElements;
 			}
+			
+			data = null;
+			data = newData;			
 		}
 
 		if (element == null || element.trim().equals("")) {
