@@ -132,10 +132,10 @@ public class LoadCSV extends AbstractCommand {
 					}
 				}
 
-				if (state == ParserState.COLUMN_CONTENT || state == ParserState.COLUMN_END) {
+				if (state == ParserState.COLUMN_CONTENT || state == ParserState.COLUMN_END || state == ParserState.COLUMN_START) {
 					factories[columnNumber++].addElement(columnContent.toString());
 				}
-
+				
 			}
 
 			br.close();
