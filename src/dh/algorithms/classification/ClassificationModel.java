@@ -31,11 +31,9 @@ public abstract class ClassificationModel extends Model {
 		BooleanDataColumn prediction = new BooleanDataColumn();
 		prediction.setName("prediction");
 		prediction.setRole("prediction");
-		boolean[] nullElements = new boolean[table.getSize()];
 		boolean[] p = new boolean[table.getSize()];
 		for (int i = 0; i < table.getSize(); i++) {
 			p[i] = false;
-			nullElements[i] = false;
 		}
 		prediction.setData(p);
 		table.getColumns().put(prediction.getName(), prediction);
@@ -54,13 +52,10 @@ public abstract class ClassificationModel extends Model {
 		numericPrediction.setName("numericprediction");
 		numericPrediction.setRole("numericprediction");
 		double[] numericP = new double[table.getSize()];
-		boolean[] nullElements = new boolean[table.getSize()];
 		for (int i = 0; i < table.getSize(); i++) {
 			numericP[i] = 0.0;
-			nullElements[i] = false;
 		}
 		numericPrediction.setData(numericP);
-		numericPrediction.setNullElements(nullElements);
 
 		table.getColumns().put(numericPrediction.getName(), numericPrediction);
 
