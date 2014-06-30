@@ -6,5 +6,10 @@ public class SigmoidActivationFunction implements AbstractActivationFunction {
 	public double activate(double t) {
 		return 1.0 / (1.0 + Math.exp(-1.0 * t));
 	}
+	
+	@Override
+	public String getName() {
+		return "sigmoid";
+	}
 
 }

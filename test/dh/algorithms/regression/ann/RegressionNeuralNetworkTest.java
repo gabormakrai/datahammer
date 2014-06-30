@@ -7,9 +7,13 @@ import java.util.HashMap;
 import org.junit.Before;
 import org.junit.Test;
 
+import dh.algorithms.evaluation.EvaluationResult;
+import dh.algorithms.evaluation.regression.RegressionEvaluationFactory;
 import dh.algorithms.regression.RegressionModel;
 import dh.data.column.AbstractDataColumn;
 import dh.data.column.base.DoubleDataColumn;
+import dh.data.column.special.MarkingColumn;
+import dh.data.column.special.MarkingColumn.MarkingType;
 import dh.repository.Model;
 import dh.repository.Table;
 
@@ -32,8 +36,9 @@ public class RegressionNeuralNetworkTest {
 		double[] a2 = new double[] { 0.1, 0.25, 0.75, 1.0 };
 		double[] a3 = new double[] { 0.5, 0.5, 1.0, 0.25 };
 		double[] a4 = new double[] { 0.0, 0.0, 0.0, 0.0 };
+		MarkingType[] markings = new MarkingType[] { MarkingType.Test, MarkingType.Test, MarkingType.Test, MarkingType.Test };
 		for (int i = 0; i < 4; ++i) {
-			a4[i] = (1.0 + 1.0 * a1[i] + 4.0 * a2[i] + 2.0 * a3[i]) / 8.0; 
+			a4[i] = (1.0 * a1[i] + 2.0 * a2[i]) / 3.0; 
 		}
 		
 		AbstractDataColumn a1Column = createColumn("a1", a1);
@@ -42,10 +47,16 @@ public class RegressionNeuralNetworkTest {
 		AbstractDataColumn a4Column = createColumn("a4", a4);
 		a4Column.setRole("target");
 		
+		MarkingColumn markingColumn = new MarkingColumn();
+		markingColumn.setName("marking");
+		markingColumn.setRole("marking");
+		markingColumn.setData(markings);
+		
 		testTable.getColumns().put(a1Column.getName(), a1Column);
 		testTable.getColumns().put(a2Column.getName(), a2Column);
 		testTable.getColumns().put(a3Column.getName(), a3Column);
 		testTable.getColumns().put(a4Column.getName(), a4Column);
+		testTable.getColumns().put(markingColumn.getName(), markingColumn);
 	}
 
 	@Test
@@ -55,7 +66,9 @@ public class RegressionNeuralNetworkTest {
 		HashMap<String, String> parameters = new HashMap<>();
 		parameters.put("iteration", "10000");
 		parameters.put("activation", "sigmoid");
-		parameters.put("layers", "3");
+		parameters.put("layers", "5");
+		parameters.put("learningrate", "0.3");
+		parameters.put("random", "42");
 		
 		learner.initializeLearner(testTable, parameters);
 		
@@ -66,7 +79,15 @@ public class RegressionNeuralNetworkTest {
 		}
 		NeuralNetworkModel nnModel = (NeuralNetworkModel)model;
 		
+		nnModel.apply(testTable);
 		
+		EvaluationResult result = RegressionEvaluationFactory.createEvaluator("absoluteerror").evaluate(testTable, MarkingType.Test);
+		
+		double[] target = ((DoubleDataColumn)testTable.getColumn("a4")).getData();
+		double[] prediction = ((DoubleDataColumn)testTable.getColumn("prediction")).getData();
+		
+		
+		System.out.println(result);
 	}
 	
 	

@@ -26,7 +26,7 @@ public class NeuralNetworkLearner extends AbstractLearner {
 	AbstractActivationFunction activationFunction;
 	LinkedList<Integer> layerConfiguration;
 	Random random;
-	double learningRate = 0.01;
+	double learningRate;
 
 	@Override
 	public void initializeLearner(Table table, HashMap<String, String> parameters) {
@@ -40,6 +40,16 @@ public class NeuralNetworkLearner extends AbstractLearner {
 			throw new RuntimeException("Parameter iteration is not an integer...");
 		}
 		
+		if (!parameters.containsKey("learningrate")) {
+			throw new RuntimeException("There is no parameter learningrate...");
+		}
+		try {
+			learningRate = Double.parseDouble(parameters.get("learningrate"));
+		} catch (NumberFormatException e) {
+			throw new RuntimeException("Parameter iteration is not an integer...");
+		}
+		
+		
 		if (!parameters.containsKey("activation")) {
 			throw new RuntimeException("There is no parameter activation...");
 		}
@@ -49,12 +59,14 @@ public class NeuralNetworkLearner extends AbstractLearner {
 			throw new RuntimeException("There is no parameter layers...");
 		}
 		layerConfiguration = new LinkedList<>();
-		for (String s : parameters.get("layers").split("\\ ")) {
-			try {
-				int perceptrons = Integer.parseInt(s);
-				layerConfiguration.add(perceptrons);
-			} catch (NumberFormatException e) {
-				throw new RuntimeException("Layer parameter contains non integer members... (" + s + ")");
+		if (!parameters.get("layers").equals("")) {
+			for (String s : parameters.get("layers").split("\\ ")) {
+				try {
+					int perceptrons = Integer.parseInt(s);
+					layerConfiguration.add(perceptrons);
+				} catch (NumberFormatException e) {
+					throw new RuntimeException("Layer parameter contains non integer members... (" + s + ")");
+				}
 			}
 		}
 		layerConfiguration.add(1);
@@ -126,6 +138,8 @@ public class NeuralNetworkLearner extends AbstractLearner {
 		
 		for (int iter = 0; iter < iteration; ++iter) {
 			
+			double iterationError = 0.0;
+			
 			for (int inst = 0; inst < instances; ++inst) {
 				
 				for (int i = 0; i < inputData.length; ++i) {
@@ -140,7 +154,9 @@ public class NeuralNetworkLearner extends AbstractLearner {
 				
 				double error = target[inst] - layers[layers.length - 1].getOutputs()[0];
 				
-				System.out.println(error);
+				// System.out.println(error);
+				
+				iterationError += Math.abs(error);
 				
 				// backpropogation
 				for (int i = layers.length - 1; i >= 0; --i) {
@@ -149,16 +165,19 @@ public class NeuralNetworkLearner extends AbstractLearner {
 					for (int p = 0; p < layers[i].getPerceptrons(); ++p) {
 						double[] weights = layers[i].getWeights()[p];
 						for (int w = 0; w < weights.length; ++w) {
-							double dt = learningRate * error * inputs[w] * outputs[p] * (1.0 - outputs[p]);
-							weights[w] -= dt;	
+							double dt = learningRate * error * ((w == weights.length - 1) ? 1.0 : inputs[w]) * outputs[p] * (1.0 - outputs[p]);
+							weights[w] += dt;	
 						}
 					}
 				}
 				
 //				System.out.println("pred: " + layers[layers.length - 1].getOutputs()[0] + ", target: " + target[inst]);
+				
 			}
+			iterationError /= (double)instances;
+			// System.out.println("error on " + iter + " iteration: " + iterationError);
 		}
 		
-		return null;
+		return new NeuralNetworkModel(columns, layers, activationFunction.getName());
 	}	
 }

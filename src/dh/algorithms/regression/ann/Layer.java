@@ -18,9 +18,9 @@ public class Layer implements Serializable {
 		this.perceptrons = perceptrons; 
 		weights = new double[perceptrons][];
 		for (int i = 0; i < perceptrons; ++i) {
-			weights[i] = new double[inputVariables];
+			weights[i] = new double[inputVariables + 1];
 			for (int j = 0; j < inputVariables; ++j) {
-				weights[i][j] = random.nextDouble();
+				weights[i][j] = random.nextDouble() * 2.0 - 1.0;
 			}
 		}
 		outputs = new double[perceptrons];
@@ -47,6 +47,7 @@ public class Layer implements Serializable {
 			for (int j = 0; j < data.length; ++j) {
 				outputs[i] += data[j] * weights[i][j];
 			}
+			outputs[i] += 1.0 * weights[i][data.length];
 			outputs[i] = activationFunction.activate(outputs[i]);
 		}
 	}
