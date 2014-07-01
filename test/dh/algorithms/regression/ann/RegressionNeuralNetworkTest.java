@@ -64,7 +64,7 @@ public class RegressionNeuralNetworkTest {
 		NeuralNetworkLearner learner = new NeuralNetworkLearner();
 		
 		HashMap<String, String> parameters = new HashMap<>();
-		parameters.put("iteration", "10000");
+		parameters.put("iteration", "10");
 		parameters.put("activation", "sigmoid");
 		parameters.put("layers", "5");
 		parameters.put("learningrate", "0.3");
@@ -81,13 +81,15 @@ public class RegressionNeuralNetworkTest {
 		
 		nnModel.apply(testTable);
 		
-		EvaluationResult result = RegressionEvaluationFactory.createEvaluator("absoluteerror").evaluate(testTable, MarkingType.Test);
-		
-		double[] target = ((DoubleDataColumn)testTable.getColumn("a4")).getData();
-		double[] prediction = ((DoubleDataColumn)testTable.getColumn("prediction")).getData();
-		
-		
+		EvaluationResult result = RegressionEvaluationFactory.createEvaluator("rsquare").evaluate(testTable, MarkingType.Test);
 		System.out.println(result);
+		
+		result = RegressionEvaluationFactory.createEvaluator("absoluteerror").evaluate(testTable, MarkingType.Test);
+		System.out.println(result);
+		
+//		double[] target = ((DoubleDataColumn)testTable.getColumn("a4")).getData();
+//		double[] prediction = ((DoubleDataColumn)testTable.getColumn("prediction")).getData();
+		
 	}
 	
 	

@@ -7,17 +7,19 @@ import dh.data.column.base.DoubleDataColumn;
 import dh.data.column.special.MarkingColumn;
 import dh.data.column.special.MarkingColumn.MarkingType;
 
-public class AbsoluteError extends AbstractRegressionEvaluator {
-	public static class AbsoluteErrorResult extends EvaluationResult {
+public class MeanAbsoluteError extends AbstractRegressionEvaluator {
+	public static class MeanAbsoluteErrorResult extends EvaluationResult {
 		double error;
+		int instances;
 
-		public AbsoluteErrorResult(double error) {
+		public MeanAbsoluteErrorResult(double error, int instances) {
 			this.error = error;
+			this.instances = instances;
 		}
 
 		@Override
 		public String toString() {
-			return "Regression absolute error: " + error;
+			return "Regression mean absolute error: " + error + " (" + instances + ")";
 		}
 
 		@Override
@@ -27,7 +29,7 @@ public class AbsoluteError extends AbstractRegressionEvaluator {
 
 		@Override
 		public String getEvaluationMethodName() {
-			return "Regression absolute error";
+			return "Regression mean absolute error";
 		}
 	}
 
@@ -37,9 +39,7 @@ public class AbsoluteError extends AbstractRegressionEvaluator {
 	}
 
 	@Override
-	protected EvaluationResult evaluate(AbstractDataColumn targetColumn, AbstractDataColumn predictionColumn, AbstractDataColumn markingColumn, MarkingType markingType,
-			AbstractDataColumn numericPredicition, AbstractDataColumn weightColumn, AbstractDataColumn nominalPrediction) {
-		double error = 0.0;
+	protected EvaluationResult evaluate(AbstractDataColumn targetColumn, AbstractDataColumn predictionColumn, AbstractDataColumn markingColumn, MarkingType markingType, AbstractDataColumn numericPredicition, AbstractDataColumn weightColumn, AbstractDataColumn nominalPrediction) {
 
 		DoubleDataColumn target = (DoubleDataColumn) targetColumn;
 		DoubleDataColumn prediction = (DoubleDataColumn) predictionColumn;
@@ -52,11 +52,15 @@ public class AbsoluteError extends AbstractRegressionEvaluator {
 		double[] targetData = target.getData();
 		double[] predictionData = prediction.getData();
 
+		double error = 0.0;
+		int instances = 0;
+		
 		for (int i = 0; i < target.getSize(); i++) {
 			if (marking == null || marking[i] == markingType) {
 				error += Math.abs(targetData[i] - predictionData[i]);
+				++instances;
 			}
 		}
-		return new AbsoluteErrorResult(error);
+		return new MeanAbsoluteErrorResult(error / (double)instances, instances);
 	}
 }
