@@ -9,7 +9,6 @@ import org.junit.Test;
 
 import dh.algorithms.evaluation.EvaluationResult;
 import dh.algorithms.evaluation.regression.RegressionEvaluationFactory;
-import dh.algorithms.regression.RegressionModel;
 import dh.data.column.AbstractDataColumn;
 import dh.data.column.base.DoubleDataColumn;
 import dh.data.column.special.MarkingColumn;

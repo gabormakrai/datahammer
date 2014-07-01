@@ -8,10 +8,8 @@ import dh.algorithms.AbstractLearner;
 import dh.algorithms.utils.activation.AbstractActivationFunction;
 import dh.algorithms.utils.activation.ActivationFunctionFactory;
 import dh.data.column.AbstractDataColumn;
-import dh.data.column.base.BooleanDataColumn;
 import dh.data.column.base.DoubleDataColumn;
 import dh.data.column.special.MarkingColumn;
-import dh.data.column.special.NominalDataColumn;
 import dh.data.column.special.MarkingColumn.MarkingType;
 import dh.repository.Model;
 import dh.repository.Table;
@@ -138,8 +136,6 @@ public class NeuralNetworkLearner extends AbstractLearner {
 		
 		for (int iter = 0; iter < iteration; ++iter) {
 			
-			double iterationError = 0.0;
-			
 			for (int inst = 0; inst < instances; ++inst) {
 				
 				for (int i = 0; i < inputData.length; ++i) {
@@ -154,10 +150,6 @@ public class NeuralNetworkLearner extends AbstractLearner {
 				
 				double error = target[inst] - layers[layers.length - 1].getOutputs()[0];
 				
-				// System.out.println(error);
-				
-				iterationError += Math.abs(error);
-				
 				// backpropogation
 				for (int i = layers.length - 1; i >= 0; --i) {
 					double[] inputs = (i == 0) ? inputData : layers[i-1].getOutputs();
@@ -170,12 +162,7 @@ public class NeuralNetworkLearner extends AbstractLearner {
 						}
 					}
 				}
-				
-//				System.out.println("pred: " + layers[layers.length - 1].getOutputs()[0] + ", target: " + target[inst]);
-				
 			}
-			iterationError /= (double)instances;
-			// System.out.println("error on " + iter + " iteration: " + iterationError);
 		}
 		
 		return new NeuralNetworkModel(columns, layers, activationFunction.getName());
