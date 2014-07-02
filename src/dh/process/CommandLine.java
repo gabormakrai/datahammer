@@ -81,9 +81,11 @@ public class CommandLine {
 
 		// addColumn = new AddColumn(repository);
 		copyTable = new CopyTable(repository);
+		deNormalize = new DeNormalize(repository);
 		filterRows = new FilterRows(repository);
 		mergeTable = new MergeTables(repository);
 		// modifyColumn = new ModifyColumn(repository);
+		normalize = new Normalize(repository);
 		removeColumn = new RemoveColumn(repository);
 		removeTable = new RemoveTable(repository);
 		renameColumn = new RenameColumn(repository);
@@ -123,9 +125,11 @@ public class CommandLine {
 
 	// final protected AddColumn addColumn;
 	final protected CopyTable copyTable;
+	final protected DeNormalize deNormalize;
 	final protected FilterRows filterRows;
 	final protected MergeTables mergeTable;
 	// final protected ModifyColumn modifyColumn;
+	final protected Normalize normalize;
 	final protected RemoveColumn removeColumn;
 	final protected RemoveTable removeTable;
 	final protected RenameColumn renameColumn;
