@@ -59,6 +59,7 @@ public class CommandLine {
 		createNominalStat = new CreateNominalStat(repository);
 		showTables = new ShowTables(repository);
 		statNominal = new StatNominal(repository);
+		statNumerical = new StatNumerical(repository);
 		statTable = new StatTable(repository);
 
 		generateRandomData = new GenerateRandomData(repository);
@@ -100,6 +101,7 @@ public class CommandLine {
 	final protected CreateNominalStat createNominalStat;
 	final protected ShowTables showTables;
 	final protected StatNominal statNominal;
+	final protected StatNumerical statNumerical;
 	final protected StatTable statTable;
 
 	final protected GenerateRandomData generateRandomData;
