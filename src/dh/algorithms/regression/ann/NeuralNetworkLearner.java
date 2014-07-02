@@ -138,6 +138,10 @@ public class NeuralNetworkLearner extends AbstractLearner {
 			
 			for (int inst = 0; inst < instances; ++inst) {
 				
+				if (marking != null && marking[inst] != MarkingType.Train) {
+					continue;
+				}
+				
 				for (int i = 0; i < inputData.length; ++i) {
 					inputData[i] = data[i][inst];
 				}
