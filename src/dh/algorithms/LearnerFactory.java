@@ -7,6 +7,7 @@ import dh.algorithms.classification.featureselection.FeatureSelectionLearner;
 import dh.algorithms.classification.kmeans.KMeansLearner;
 import dh.algorithms.classification.knn.KNNLearner;
 import dh.algorithms.classification.logisticregression.LogisticRegressionLearner;
+import dh.algorithms.regression.ann.NeuralNetworkLearner;
 
 public class LearnerFactory {
 
@@ -25,6 +26,8 @@ public class LearnerFactory {
 			return new KMeansLearner();
 		} else if (name.equals("classification.knn")) {
 			return new KNNLearner();
+		} else if (name.equals("regression.neuralnetwork")) {
+			return new NeuralNetworkLearner();
 		} else {
 			throw new RuntimeException("Not supported learner...(" + name + ")");
 		}
