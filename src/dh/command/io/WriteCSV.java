@@ -74,7 +74,9 @@ public class WriteCSV extends AbstractCommand {
 			for (int i = 0; i < limit; i++) {
 				buffer.setLength(0);
 				for (int j = 0; j < columns.length; j++) {
-					buffer.append(columns[j].getElement(i));
+					if (!columns[j].elementNull(i)) {
+						buffer.append(columns[j].getElement(i));
+					}
 					if (j != columns.length - 1) {
 						buffer.append(separator);
 					}
